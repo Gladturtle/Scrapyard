@@ -3,7 +3,7 @@ import time
 import psutil
 from backend import detection
 
-while detection()
+while detection():
 
     root = tk.Tk()
     root.overrideredirect(True) 
