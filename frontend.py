@@ -44,6 +44,7 @@ while detection():
     root.geometry(f"{window_width}x{window_height}+{x}+{start_y}")
     x,center_y,start_y = randomize(0,0,screen_width-window_width,screen_height-window_height)
     
+    
 
     original_image = Image.open("srs_cat.png")
     rotated_image = original_image.rotate(20, expand=True)
@@ -64,3 +65,7 @@ while detection():
     slide_up(root, start_y, center_y,x)
     fade_in()
     root.mainloop()
+
+    def show_popup():
+    """Display the image popup in the center of the screen with a slight upward slide animation, tilt effect, fade-out, and background music."""
+    threading.Thread(target=play_music, daemon=True).start()

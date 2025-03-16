@@ -20,6 +20,11 @@ def randomize(minx,miny,maxx,maxy):
     return (x,y,y+50)
 
 
+def play_music():
+    """Play the background music in a separate thread."""
+    playsound("/mnt/data/sus_music.mp3", block=False)
+
+
 
 
 
