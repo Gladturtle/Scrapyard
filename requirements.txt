@@ -1,4 +1,4 @@
 pip
 pillow
 psutil
-python-vls
+python-vlc
