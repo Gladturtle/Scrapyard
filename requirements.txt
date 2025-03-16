@@ -1,3 +1,4 @@
+pip
 pillow
 psutil
 python-vls
