@@ -4,7 +4,7 @@ import psutil
 
 def detection():
     while True:
-        running = "vscode.exe" in [p.name() for p in psutil.process_iter()]
+        running = "Code.exe" in [p.name() for p in psutil.process_iter()]
         
         return running
 print(detection())
