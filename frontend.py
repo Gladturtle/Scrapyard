@@ -23,7 +23,7 @@ def fade_in(alpha=0.0):
         root.attributes("-alpha", alpha)
         root.after(50, fade_in, alpha + 0.05)
     else:
-        root.after(4500, fade_out, root, 1.0)  
+        root.after(5000, fade_out, root, 1.0)  
 
 while detection():
     root = tk.Tk()
@@ -31,13 +31,13 @@ while detection():
     root.attributes("-alpha", 0.0)  
     root.attributes('-topmost', True)
     
-    transparent_color = "white"
+    transparent_color = "magenta"
     root.config(bg=transparent_color)
     root.attributes('-transparentcolor', transparent_color)
 
+    message = generate_response()
     sound = threading.Thread(target=play_music)
     sound.start()
-    message = generate_response()
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     window_width = 400
@@ -49,9 +49,9 @@ while detection():
     x,center_y,start_y = randomize_cood(0,0,screen_width-window_width,screen_height-window_height)
     
     
+    text_label = tk.Label(root, text=message, font=("Arial", 14, "bold"), fg="black", bg="white", wraplength=380, justify="left")
+    text_label.pack(pady=10, padx=10)
     
-
-    #ugiugiugipu
   
     original_image = Image.open(f"./data/{randomize_img()}")
     rotated_image = original_image.rotate(randomize_deg(), expand=True)
@@ -67,7 +67,7 @@ while detection():
     offset_y = (window_height - img_height) // 2
 
  
-    canvas.create_image(offset_x, offset_y, image=srs_cat, anchor="nw")\
+    canvas.create_image(offset_x, offset_y, image=srs_cat, anchor="nw")
     
  
     
@@ -75,28 +75,5 @@ while detection():
     fade_in()
     root.mainloop()
 
-
-# Add text label
-    text_label = tk.Label(root, text=message, font=("Arial", 14, "bold"), fg="black", bg="white")
-    text_label.place(relx=0.7, rely=0.3, anchor="w")
-    
-    def fade_in(alpha=0.0):
-        if alpha < 1.0:
-            root.attributes("-alpha", alpha)
-            root.after(50, fade_in, alpha + 0.05)
-        else:
-            root.after(3000, fade_out, root, 1.0)  # Stay for 3 seconds before fading out
-    
-    slide_up(root, start_y, center_y)
-    fade_in()
-    root.mainloop()
-
-def monitor_vs_code():
-    """Continuously monitor VS Code and display the popup when it opens."""
-    if detection():
-        show_popup("VS Code Detected!")
-
-if __name__ == "__main__":
-    monitor_vs_code()
 
 
