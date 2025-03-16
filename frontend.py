@@ -76,4 +76,27 @@ while detection():
     root.mainloop()
 
 
+# Add text label
+    text_label = tk.Label(root, text=message, font=("Arial", 14, "bold"), fg="black", bg="white")
+    text_label.place(relx=0.7, rely=0.3, anchor="w")
+    
+    def fade_in(alpha=0.0):
+        if alpha < 1.0:
+            root.attributes("-alpha", alpha)
+            root.after(50, fade_in, alpha + 0.05)
+        else:
+            root.after(3000, fade_out, root, 1.0)  # Stay for 3 seconds before fading out
+    
+    slide_up(root, start_y, center_y)
+    fade_in()
+    root.mainloop()
+
+def monitor_vs_code():
+    """Continuously monitor VS Code and display the popup when it opens."""
+    if detection():
+        show_popup("VS Code Detected!")
+
+if __name__ == "__main__":
+    monitor_vs_code()
+
 
