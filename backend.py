@@ -1,23 +1,20 @@
-import tkinter as tk
-import time
 import psutil
 import random
-import math
-from PIL import Image, ImageTk
-
-def is_vs_code_running():
-    """Check if Visual Studio Code is running."""
-    return "Code.exe" in (p.name() for p in psutil.process_iter())
-
+import time
 def detection():
-    """Monitor VS Code with a random delay before confirmation."""
     while True:
         while True:
-            if is_vs_code_running():
+            running = "Code.exe" in [p.name() for p in psutil.process_iter()]
+            if running == True:
                 break
-        time.sleep(random.randint(0, 300))  # Random delay before rechecking
-        if is_vs_code_running():
+        time.sleep(random.randint(0,300))
+        running = "Code.exe" in [p.name() for p in psutil.process_iter()]
+        if running == True:
             return True
+        else:
+            continue
+
+
 
 def fade_out(window, alpha):
     """Fade out the window gradually."""
