@@ -1,6 +1,9 @@
 import psutil
 import random
 import time
+
+import vlc 
+
 def detection():
     while True:
         while True:
@@ -14,15 +17,19 @@ def detection():
         else:
             continue
 
-def randomize(minx,miny,maxx,maxy):
+def randomize_cood(minx,miny,maxx,maxy):
     x = random.randint(minx,maxx)
     y = random.randint(miny,maxy)
     return (x,y,y+50)
 
+def randomize_deg():
+    return random.randint(-80,80)
 
 def play_music():
-    """Play the background music in a separate thread."""
-    playsound("/mnt/data/sus_music.mp3", block=False)
+    
+    player = vlc.MediaPlayer("sus_music.mp3")
+    player.play()
+  
 
 
 

@@ -1,9 +1,7 @@
 import tkinter as tk
-import time 
-import psutil
-import random
+import threading
 from PIL import Image, ImageTk
-from backend import detection,randomize
+from backend import detection,randomize_cood,play_music,randomize_deg
 
 
 
@@ -25,7 +23,7 @@ def fade_in(alpha=0.0):
         root.attributes("-alpha", alpha)
         root.after(50, fade_in, alpha + 0.05)
     else:
-        root.after(3000, fade_out, root, 1.0)  
+        root.after(4500, fade_out, root, 1.0)  
 
 while detection():
     root = tk.Tk()
@@ -33,7 +31,12 @@ while detection():
     root.attributes("-alpha", 0.0)  
     root.attributes('-topmost', True)
     
+    transparent_color = "white"
+    root.config(bg=transparent_color)
+    root.attributes('-transparentcolor', transparent_color)
 
+    sound = threading.Thread(target=play_music)
+    sound.start()
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     window_width = 400
@@ -42,16 +45,17 @@ while detection():
     center_y = (screen_height - window_height) // 2 
     start_y = center_y + 50  
     root.geometry(f"{window_width}x{window_height}+{x}+{start_y}")
-    x,center_y,start_y = randomize(0,0,screen_width-window_width,screen_height-window_height)
+    x,center_y,start_y = randomize_cood(0,0,screen_width-window_width,screen_height-window_height)
     
     
-
-    original_image = Image.open("srs_cat.png")
-    rotated_image = original_image.rotate(20, expand=True)
+    
+  
+    original_image = Image.open("lolcat.png.png")
+    rotated_image = original_image.rotate(randomize_deg(), expand=True)
     srs_cat = ImageTk.PhotoImage(rotated_image)
     
 
-    canvas = tk.Canvas(root, width=window_width, height=window_height, bg="white", highlightthickness=0)
+    canvas = tk.Canvas(root, width=window_width, height=window_height, bg=transparent_color, highlightthickness=0)
     canvas.pack()
     
   
@@ -60,12 +64,13 @@ while detection():
     offset_y = (window_height - img_height) // 2
 
  
-    canvas.create_image(offset_x, offset_y, image=srs_cat, anchor="nw")
+    canvas.create_image(offset_x, offset_y, image=srs_cat, anchor="nw")\
+    
+ 
     
     slide_up(root, start_y, center_y,x)
     fade_in()
     root.mainloop()
 
-    def show_popup():
-    """Display the image popup in the center of the screen with a slight upward slide animation, tilt effect, fade-out, and background music."""
-    threading.Thread(target=play_music, daemon=True).start()
+
+
