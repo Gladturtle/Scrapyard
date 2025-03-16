@@ -8,7 +8,6 @@ from backend import detection,randomize
 
 
 def fade_out(window, alpha):
-    """Fade out the window gradually."""
     if alpha > 0:
         window.attributes("-alpha", 1)
         window.after(50, fade_out, window, alpha - 0.05)
@@ -16,7 +15,7 @@ def fade_out(window, alpha):
         window.destroy()
 
 def slide_up(window, start_offset, target_offset,x_coor):
-    """Animate the window sliding slightly upwards in the center of the screen."""
+ 
     if start_offset > target_offset:
         window.geometry(f"400x300+{x_coor}+{start_offset}")
         window.after(10, slide_up, window, start_offset - 2, target_offset)
