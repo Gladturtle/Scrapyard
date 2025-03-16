@@ -11,7 +11,7 @@ def detection():
             running = "Code.exe" in [p.name() for p in psutil.process_iter()]
             if running == True:
                 break
-        time.sleep(random.randint(0,3))
+        time.sleep(random.randint(0,300))
         running = "Code.exe" in [p.name() for p in psutil.process_iter()]
         if running == True:
             return True
@@ -40,8 +40,8 @@ def instatiate_model():
     client.create(model='Response_Gen',from_ = 'deepseek-r1', messages=[{'role':'system','content':'You are a short response generator for a meme cat that randomly pops up. You can give nice and slightly snarky comments regarding the user\'s code.'}])
 
 def generate_response():
-    response_type = ['snarky','nice','funny']
-    response = ollama.generate(model='Response_Gen',prompt=f"Generate a {response_type[random.randint(0,2)]} response. Strictly under 20-25 words")
+    response_type = ['snarky','roast','funny']
+    response = ollama.generate(model='Response_Gen',prompt=f"Generate a {response_type[random.randint(0,2)]} response. Strictly under 20-25 words. You are the cat. Do not introduce yourself")
     message = response['response']
     message = response['response'][message.index('</think>')+10:]
     return message
