@@ -50,6 +50,8 @@ while detection():
     
     
     
+
+    #ugiugiugipu
   
     original_image = Image.open(f"./data/{randomize_img()}")
     rotated_image = original_image.rotate(randomize_deg(), expand=True)
