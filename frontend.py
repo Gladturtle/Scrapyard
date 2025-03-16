@@ -1,10 +1,10 @@
 import tkinter as tk
 import threading
 from PIL import Image, ImageTk
-from backend import detection,randomize_cood,play_music,randomize_deg
+from backend import detection,randomize_cood,play_music,randomize_deg,randomize_img,instatiate_model,generate_response
 
 
-
+instatiate_model()
 def fade_out(window, alpha):
     if alpha > 0:
         window.attributes("-alpha", 1)
@@ -37,6 +37,7 @@ while detection():
 
     sound = threading.Thread(target=play_music)
     sound.start()
+    message = generate_response()
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     window_width = 400
@@ -50,7 +51,7 @@ while detection():
     
     
   
-    original_image = Image.open("lolcat.png.png")
+    original_image = Image.open(f"./data/{randomize_img()}")
     rotated_image = original_image.rotate(randomize_deg(), expand=True)
     srs_cat = ImageTk.PhotoImage(rotated_image)
     
