@@ -1,7 +1,13 @@
 import tkinter as tk
+import time 
+import psutil
 
-def on_drag(event):
-    root.geometry(f"+{event.x_root}+{event.y_root}")
+def detection():
+    while True:
+        running = "vscode.exe" in [p.name() for p in psutil.process_iter()]
+        
+        return running
+print(detection())
 
 root = tk.Tk()
 root.overrideredirect(True) 
