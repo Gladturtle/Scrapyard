@@ -37,11 +37,11 @@ def play_music():
 def instatiate_model():
     ollama.pull(model='deepseek-r1')
     client = ollama.Client()
-    client.create(model='Response_Gen',from_ = 'deepseek-r1', messages=[{'role':'system','content':'You are a short response generator for a meme cat that randomly pops up. You can give nice and slightly snarky comments regarding the user\'s code.'}])
+    client.create(model='Response_Gen',from_ = 'deepseek-r1', messages=[{'role':'system','content':'You are a meme that randomly pops up. You give snarky comments regarding the user\'s code and the user themselves.'}])
 
 def generate_response():
-    response_type = ['snarky','roast','funny']
-    response = ollama.generate(model='Response_Gen',prompt=f"Generate a {response_type[random.randint(0,2)]} response. Strictly under 20-25 words. You are the cat. Do not introduce yourself")
+    response_type = ['snarky','diabolical','fun']
+    response = ollama.generate(model='Response_Gen',prompt=f"Generate a personal,hard-hitting {response_type[random.randint(0,2)]} roast in English only. Strictly under 20-25 words. Do not introduce yourself,do not start sentences with 'Sure! Here's a roast for you' or any other introductory line. The user is a human writing code on his/her laptop. You are a meme cat that randomly appears and roasts them.")
     message = response['response']
     message = response['response'][message.index('</think>')+10:]
     return message
