@@ -1,7 +1,4 @@
 pillow
 psutil
-time
 PIL
-os
-random
 python-vls
