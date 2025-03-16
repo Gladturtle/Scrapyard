@@ -14,8 +14,12 @@ def detection():
         else:
             continue
 
-def randomize():
-    
+def randomize(minx,miny,maxx,maxy):
+    x = random.randint(minx,maxx)
+    y = random.randint(miny,maxy)
+    return (x,y,y+50)
+
+
 
 
 
