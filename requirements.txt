@@ -2,3 +2,4 @@ pip
 pillow
 psutil
 python-vlc
+ollama
